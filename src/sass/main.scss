@@ -1,0 +1,28 @@
+@import "abstracts/typography";
+@import "components/MultiSelectDropdown";
+
+body {
+    font-family: "Quarion", sans-serif;
+    color: #8a8d96;
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #c5c6cb;
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #8a8b8f;
+    }
+}

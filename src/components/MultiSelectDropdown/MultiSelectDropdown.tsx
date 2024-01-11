@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef, KeyboardEvent } from "react";
 
-import "./MultiSelectDropdown.scss";
 import type { Option } from "../../types/multi-select-dropdown";
 
 interface MultiSelectDropdownProps {
@@ -72,8 +71,12 @@ const MultiSelectDropdown: React.FC<MultiSelectDropdownProps> = ({
         (option) => option.label === searchTerm
       );
       if (!existingOption) {
-        const newOption: Option = { value: searchTerm, label: searchTerm };
-        onAddOption(newOption); // Call the function to add the new option
+        const newOption: Option = {
+          value: searchTerm,
+          label: searchTerm,
+          src: "",
+        };
+        onAddOption(newOption);
         setSelectedValues([...selectedValues, newOption.value]);
       }
       setSearchTerm("");
@@ -82,21 +85,26 @@ const MultiSelectDropdown: React.FC<MultiSelectDropdownProps> = ({
 
   return (
     <div className="multi-select-dropdown">
-      <input
-        type="text"
-        className="selected-values"
-        placeholder={
-          selectedValues.length === 0
-            ? "Select options"
-            : selectedValues.join(", ")
-        }
-        onClick={toggleDropdown}
-        onChange={handleInputChange}
-        onKeyPress={handleKeyPress}
-        value={searchTerm}
-        onFocus={handleInputFocus}
-        ref={inputRef}
-      />
+      <div className="input-container">
+        <input
+          type="text"
+          className="selected-values"
+          placeholder={
+            selectedValues.length === 0
+              ? "Select options"
+              : selectedValues.join(", ")
+          }
+          onClick={toggleDropdown}
+          onChange={handleInputChange}
+          onKeyPress={handleKeyPress}
+          value={searchTerm}
+          onFocus={handleInputFocus}
+          ref={inputRef}
+        />
+        <div className={`indicator ${isOpen ? "open" : ""}`}>
+          <img src="/images/indicator.svg" alt="indicator" />
+        </div>
+      </div>
       {isOpen && (
         <div className="options" ref={optionsRef}>
           {filteredOptions.map((option) => (
@@ -107,7 +115,19 @@ const MultiSelectDropdown: React.FC<MultiSelectDropdownProps> = ({
                 selectedValues.includes(option.value) ? "selected" : ""
               }`}
             >
-              {option.label}
+              <div className="label-container">
+                {option.label}
+                {!!option.src && (
+                  <img
+                    src={option.src}
+                    alt={option.label}
+                    className="option-icon"
+                  />
+                )}
+              </div>
+              {selectedValues.includes(option.value) && (
+                <img src="/images/tick.svg" alt="tick" className="tick-icon" />
+              )}
             </div>
           ))}
         </div>

@@ -1,0 +1,113 @@
+.multi-select-dropdown {
+    position: relative;
+
+    .input-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .selected-values {
+        cursor: pointer;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 100%;
+        flex: 1;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -ms-border-radius: 15px;
+        -o-border-radius: 15px;
+        padding: 13px 10px;
+        box-sizing: border-box;
+        font-size: 16px;
+        font-family: "Quarion";
+        font-weight: normal;
+    }
+
+    .selected-values:focus-visible {
+        outline: none;
+        border: 2px solid #909fde;
+        box-shadow: 0px 0px 2px 2px #c9d4f8;
+    }
+
+    .indicator {
+        position: absolute;
+        right: 8px;
+        pointer-events: none;
+        transition: transform 0.2s ease;
+        height: 30px;
+        width: 30px;
+    }
+
+    .indicator.open {
+        transform: rotateX(180deg);
+    }
+
+    .indicator img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .options {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-top: none;
+        box-shadow: -1px 0px 17px -9px #000000;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -ms-border-radius: 15px;
+        -o-border-radius: 15px;
+        margin-top: 7px;
+        padding: 20px 13px;
+        box-sizing: border-box;
+        max-height: 200px;
+        overflow-y: auto;
+
+        .option {
+            padding: 12px 18px;
+            box-sizing: border-box;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .label-container {
+                display: flex;
+                align-items: center;
+
+                .option-icon {
+                    width: 20px;
+                    margin-left: 6px;
+                }
+            }
+
+            .tick-icon {
+                margin-left: 8px;
+                width: 20px;
+            }
+
+            &:hover {
+                background-color: #f8f8fc;
+            }
+
+            &.selected {
+                color: #6980cf;
+                background-color: #f2f4ff;
+                border-radius: 10px;
+                -webkit-border-radius: 10px;
+                -moz-border-radius: 10px;
+                -ms-border-radius: 10px;
+                -o-border-radius: 10px;
+            }
+        }
+    }
+}
